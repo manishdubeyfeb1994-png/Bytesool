@@ -5,37 +5,40 @@ function Contact() {
   const [status, setStatus] = useState("");
 
   const sendEmail = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setStatus("");
+  e.preventDefault();
+  setLoading(true);
+  setStatus("");
 
-    const formData = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      message: e.target.message.value,
-    };
-
-    try {
-      const response = await fetch("http://localhost:8080/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setStatus("Message sent successfully ✅");
-        e.target.reset();
-      } else {
-        setStatus("Failed to send message ❌");
-      }
-    } catch (error) {
-      setStatus("Server error ❌");
-    }
-
-    setLoading(false);
+  const formData = {
+    name: e.target.name.value.trim(),
+    email: e.target.email.value.trim(),
+    phone: e.target.phone.value.trim(),
+    message: e.target.message.value.trim(),
   };
+
+  try {
+    const response = await fetch(`${import.meta.env.BACKEND_URL} /send-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      setStatus("Message sent successfully ✅");
+      e.target.reset();
+    } else {
+      setStatus(data.message || "Failed to send message ❌");
+    }
+  } catch (error) {
+    setStatus("Server error ❌");
+  }
+
+  setLoading(false);
+};
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-20">
@@ -96,10 +99,11 @@ function Contact() {
               Phone No :
             </label>
             <input
-              type="text"
+              type="tel"
               name="phone"
               placeholder="Enter Your Phone Number"
-              className="w-full p-3 border rounded-md focus:outline focus:ring-2 focus:ring-[#8490ff]"
+              required
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#8490ff]"
             />
             <label className="block text-sm font-medium text-gray-800">
               Message :
