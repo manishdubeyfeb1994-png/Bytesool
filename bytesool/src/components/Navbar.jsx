@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
-import BytesoolLogo from "../assets/bytesool_logo.png";
+import BytesoolLogo from "../assets/Bytesool_logo.png";
 function Navbar() {
   const { isOpen, setIsOpen } = useState(false);
   return (
