@@ -113,7 +113,7 @@ func sendEmail(form ContactForm) error {
 
 	body := fmt.Sprintf(`{
   	"from": "Bytesool <contact@bytesool.com>",
-  	"to": ["shashankdubey102022@gmail.com"],
+  	"to": ["info@bytesool.com"],
   	"subject": "New Contact Message",
   	"html": "<h2>New Contact</h2><p><b>Name:</b> %s</p><p><b>Email:</b> %s</p><p><b>Phone:</b> %s</p><p><b>Message:</b> %s</p>"
 	}`, form.Name, form.Email, form.Phone, form.Message)
