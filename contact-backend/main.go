@@ -107,36 +107,40 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 
 func sendEmail(form ContactForm) error {
 
-	apiKey := os.Getenv("RESEND_API_KEY")
+    apiKey := os.Getenv("RESEND_API_KEY")
 
-	url := "https://api.resend.com/emails"
+    url := "https://api.resend.com/emails"
 
-	body := fmt.Sprintf(`{
-		"from": "Bytesool <onboarding@resend.dev>",
-		"to": ["info@bytesool.com"],
-		"subject": "New Contact Message",
-		"html": "<h2>New Contact</h2><p><b>Name:</b> %s</p><p><b>Email:</b> %s</p><p><b>Phone:</b> %s</p><p><b>Message:</b> %s</p>"
-	}`, form.Name, form.Email, form.Phone, form.Message)
+    body := fmt.Sprintf(`{
+        "from": "Bytesool <onboarding@resend.dev>",
+        "to": ["info@bytesool.com"],
+        "subject": "New Contact Message",
+        "html": "<h2>New Contact</h2>
+        <p><b>Name:</b> %s</p>
+        <p><b>Email:</b> %s</p>
+        <p><b>Phone:</b> %s</p>
+        <p><b>Message:</b> %s</p>"
+    }`, form.Name, form.Email, form.Phone, form.Message)
 
-	req, _ := http.NewRequest("POST", url, bytes.NewBuffer([]byte(body)))
+    req, _ := http.NewRequest("POST", url, bytes.NewBuffer([]byte(body)))
 
-	req.Header.Set("Authorization", "Bearer "+apiKey)
-	req.Header.Set("Content-Type", "application/json")
+    req.Header.Set("Authorization", "Bearer "+apiKey)
+    req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
+    client := &http.Client{}
+    resp, err := client.Do(req)
 
-	if err != nil {
-		return err
-	}
+    if err != nil {
+        return err
+    }
 
-	defer resp.Body.Close()
+    defer resp.Body.Close()
 
-	if resp.StatusCode != 200 && resp.StatusCode != 202 {
-		return fmt.Errorf("failed to send email")
-	}
+    if resp.StatusCode != 200 && resp.StatusCode != 202 {
+        return fmt.Errorf("failed to send email")
+    }
 
-	return nil
+    return nil
 }
 
 func enableCors(w *http.ResponseWriter) {
