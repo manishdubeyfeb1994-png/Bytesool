@@ -8,7 +8,7 @@ import (
 	"os"
 	"regexp"
 	"strconv"
-
+	"crypto/tls" 
 	"github.com/joho/godotenv"
 	"gopkg.in/gomail.v2"
 )
@@ -129,7 +129,9 @@ func sendEmail(form ContactForm) error {
 	`, form.Name, form.Email, form.Phone, form.Message))
 
 	d := gomail.NewDialer(host, port, user, pass)
-	d.SSL = false
+	d.TLSConfig = &tls.Config{
+    	InsecureSkipVerify: true,
+	}
 
 	return d.DialAndSend(m)
 }
