@@ -1,4 +1,5 @@
 import { FaEnvelope, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -17,29 +18,29 @@ function Footer() {
           <h3 className="text-white font-medium mb-4">Quick Links</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/" className="hover:text-white">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/services" className="hover:text-white">
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/about" className="hover:text-white">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/contact" className="hover:text-white">
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/faq" className="hover:text-white">
                 FAQ
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -49,14 +50,14 @@ function Footer() {
           <h3 className="text-white font-medium mb-4">Legal</h3>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/privacy" className="hover:text-white">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-white">
+              <Link to="/terms" className="hover:text-white">
                 Terms & Conditions
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
