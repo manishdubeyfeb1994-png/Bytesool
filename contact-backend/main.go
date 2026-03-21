@@ -1,16 +1,15 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
 	"regexp"
-	"strconv"
-	"crypto/tls" 
+
 	"github.com/joho/godotenv"
-	"gopkg.in/gomail.v2"
 )
 
 type ContactForm struct {
@@ -108,32 +107,36 @@ func handleSendEmail(w http.ResponseWriter, r *http.Request) {
 
 func sendEmail(form ContactForm) error {
 
-	host := os.Getenv("SMTP_HOST")
-	portStr := os.Getenv("SMTP_PORT")
-	user := os.Getenv("SMTP_USER")
-	pass := os.Getenv("SMTP_PASS")
+	apiKey := os.Getenv("RESEND_API_KEY")
 
-	port, _ := strconv.Atoi(portStr)
+	url := "https://api.resend.com/emails"
 
-	m := gomail.NewMessage()
-	m.SetHeader("From", user)
-	m.SetHeader("To", user)
-	m.SetHeader("Subject", "New Contact Form Submission")
+	body := fmt.Sprintf(`{
+		"from": "Bytesool <onboarding@resend.dev>",
+		"to": ["info@bytesool.com"],
+		"subject": "New Contact Message",
+		"html": "<h2>New Contact</h2><p><b>Name:</b> %s</p><p><b>Email:</b> %s</p><p><b>Phone:</b> %s</p><p><b>Message:</b> %s</p>"
+	}`, form.Name, form.Email, form.Phone, form.Message)
 
-	m.SetBody("text/html", fmt.Sprintf(`
-		<h2>New Contact Message</h2>
-		<p><strong>Name:</strong> %s</p>
-		<p><strong>Email:</strong> %s</p>
-		<p><strong>Phone:</strong> %s</p>
-		<p><strong>Message:</strong><br/> %s</p>
-	`, form.Name, form.Email, form.Phone, form.Message))
+	req, _ := http.NewRequest("POST", url, bytes.NewBuffer([]byte(body)))
 
-	d := gomail.NewDialer(host, port, user, pass)
-	d.TLSConfig = &tls.Config{
-    	InsecureSkipVerify: true,
+	req.Header.Set("Authorization", "Bearer "+apiKey)
+	req.Header.Set("Content-Type", "application/json")
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+
+	if err != nil {
+		return err
 	}
 
-	return d.DialAndSend(m)
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 && resp.StatusCode != 202 {
+		return fmt.Errorf("failed to send email")
+	}
+
+	return nil
 }
 
 func enableCors(w *http.ResponseWriter) {
