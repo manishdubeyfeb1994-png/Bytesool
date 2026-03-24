@@ -1,61 +1,35 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
 import BytesoolLogo from "../assets/Bytesool_logo.png";
-function Navbar() {
-  const { isOpen, setIsOpen } = useState(false);
+
+export default function Navbar() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav className="bg-[#feffff] text-black shadow-lg">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex justify-between items-center h-16">
-          <div className="text-2xl font-bold text-green-400">
-            <img src={BytesoolLogo} alt="Bytesool Logo" className="h-12" />
-          </div>
+    <nav className="navbar">
 
-          {/*   Desktop menu button */}
-          <div className="hidden md:flex gap-6 font-medium">
-            <Link to="/" className="hover:text-[#e4479e]">
-              Home
-            </Link>
-            <Link to="/about" className="hover:text-[#e4479e]">
-              About
-            </Link>
-            <Link to="/services" className="hover:text-[#e4479e]">
-              Services
-            </Link>
-            <Link to="/contact" className="hover:text-[#e4479e]">
-              Contact
-            </Link>
-          </div>
+      <Link to="/" className="logo-link">
+        <img src={BytesoolLogo} alt="Bytesool Logo" className="logo-img" />
+        <span className="logo-text">Bytesool</span>
+      </Link>
 
-          {/* Mobile menu open button  */}
-          <div className="md:hidden">
-            <button onClick={() => setIsOpen(!isOpen)}>
-              <GiHamburgerMenu />
-            </button>
-          </div>
-        </div>
+      {/* HAMBURGER */}
+      <div 
+        className="hamburger"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ☰
       </div>
 
-      {/* Mobile menu  */}
-      {isOpen && (
-        <div className="md:hidden bg-slate-800 px-6 pb-4 space-y-3">
-          <a href="#" className="block hover:text-green-400">
-            Home
-          </a>
-          <a href="#" className="block hover:text-green-400">
-            About
-          </a>
-          <a href="#" className="block hover:text-green-400">
-            Services
-          </a>
-          <a href="#" className="block hover:text-green-400">
-            Contact
-          </a>
-        </div>
-      )}
+      {/* MENU */}
+      <ul className={menuOpen ? "nav-links active" : "nav-links"}>
+        <li><Link to="/" onClick={()=>setMenuOpen(false)}>Home</Link></li>
+        <li><Link to="/services" onClick={()=>setMenuOpen(false)}>Services</Link></li>
+        <li><Link to="/about" onClick={()=>setMenuOpen(false)}>About</Link></li>
+        <li><Link to="/contact" onClick={()=>setMenuOpen(false)}>Contact</Link></li>
+      </ul>
+
     </nav>
   );
 }
-
-export default Navbar;
