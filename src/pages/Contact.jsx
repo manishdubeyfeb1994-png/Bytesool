@@ -33,7 +33,7 @@ function Contact() {
     } else {
       setStatus(data.message || "Failed to send message ❌");
     }
-  } catch (error) {
+  } catch {
     setStatus("Server error ❌");
   }
 

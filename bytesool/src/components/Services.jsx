@@ -1,5 +1,4 @@
 import React from "react";
-import { services } from "../assets/Content";
 
 function Services() {
   return (

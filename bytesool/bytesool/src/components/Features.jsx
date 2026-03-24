@@ -1,5 +1,5 @@
 import React from "react";
-import { features } from "../assets/Content";
+
 function Features() {
   return (
     <section className="py-20 px-6 bg-gray-20">

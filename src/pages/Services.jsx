@@ -11,7 +11,7 @@ function Services() {
 
       {/* {Service Cards} */}
       <div className="max-w-6xl mx-auto px-6 py-16 space-y-10">
-      {services.map((service,index) => {
+      {services.map((service) => {
         const Icon = service.icon;
         
         return (
