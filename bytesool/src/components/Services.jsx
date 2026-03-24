@@ -22,7 +22,7 @@ function Services() {
             <p className="text-gray-600 text-sm leading-relaxed mb-2">
               We design and develop modern, responsive, and high-performance websites that represent your brand professionally. Our websites are SEO-optimized, fast-loading, and built to convert visitors into customers.
             </p>
-            <span className="block text-green-600 font-medium">👉 Result: More leads, better online presence, higher conversion rate</span>
+            <span className="block text-sky-500 font-medium">👉 Result: More leads, better online presence, higher conversion rate</span>
           </div>
           {/* Mobile App Development */}
           <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
@@ -33,7 +33,7 @@ function Services() {
             <p className="text-gray-600 text-sm leading-relaxed mb-2">
               We create powerful mobile applications for Android and iOS with smooth performance and modern UI/UX.
             </p>
-            <span className="block text-green-600 font-medium">👉 Result: Better customer engagement and business growth</span>
+            <span className="block text-sky-500 font-medium">👉 Result: Better customer engagement and business growth</span>
           </div>
           {/* Digital Marketing */}
           <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
@@ -44,7 +44,7 @@ function Services() {
             <p className="text-gray-600 text-sm leading-relaxed mb-2">
               We provide SEO, Google Ads, social media marketing, and content strategies to grow your business online.
             </p>
-            <span className="block text-green-600 font-medium">👉 Result: More traffic, leads, and ROI</span>
+            <span className="block text-sky-500 font-medium">👉 Result: More traffic, leads, and ROI</span>
           </div>
           {/* Branding & Graphic Design */}
           <div className="bg-white p-8 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-2 transition duration-300">
@@ -55,7 +55,7 @@ function Services() {
             <p className="text-gray-600 text-sm leading-relaxed mb-2">
               We design logos, banners, and creatives that build a strong and trustworthy brand identity.
             </p>
-            <span className="block text-green-600 font-medium">👉 Result: Strong brand presence and customer trust</span>
+            <span className="block text-sky-500 font-medium">👉 Result: Strong brand presence and customer trust</span>
           </div>
         </div>
         {/* IT Consulting */}
@@ -68,7 +68,7 @@ function Services() {
             <p className="text-gray-600 text-sm leading-relaxed mb-2">
               We help businesses choose the right technology and automate their processes.
             </p>
-            <span className="block text-green-600 font-medium">👉 Result: Cost saving + better efficiency</span>
+            <span className="block text-sky-500 font-medium">👉 Result: Cost saving + better efficiency</span>
           </div>
         </div>
       </div>

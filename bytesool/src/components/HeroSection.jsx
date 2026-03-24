@@ -26,7 +26,7 @@ function HeroSection() {
             href="https://wa.me/916307583062"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold shadow-md hover:bg-green-600 transition duration-300"
+            className="bg-sky-500 text-white px-8 py-3 rounded-lg font-semibold shadow-md hover:bg-sky-600 transition duration-300"
           >
             Chat on WhatsApp
           </a>

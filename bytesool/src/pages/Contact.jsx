@@ -67,9 +67,17 @@ function Contact() {
             <p>
               <strong>Location:</strong> India
             </p>
-            <p className="text-green-600 font-medium mt-2">
+            <p className="text-sky-500 font-medium mt-2">
               👉 Get instant response on WhatsApp for quick support
             </p>
+            <a
+              href="https://wa.me/916307583062"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-4 bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg transition"
+            >
+              💬 Chat on WhatsApp
+            </a>
           </div>
         </div>
 
